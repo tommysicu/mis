@@ -5,8 +5,8 @@ require_once 'includes/global.inc.php';
 
 //initialize php variables used in the form
 $username = "";
-$password = "";
-$password_confirm = "";
+$password = "123456";
+$password_confirm = "123456";
 $email = "";
 $error = "";
 
@@ -25,16 +25,15 @@ if (isset($_POST['submit-form'])) {
 
     //validate that the form was filled out correctly
     //check to see if user name already exists
-    if ($userTools->checkUsernameExists($username)) {
-        $error .= "That username is already taken.<br/> \n\r";
-        $success = false;
-    }
-
+    //if ($userTools->checkUsernameExists($username)) {
+    //    $error .= "That username is already taken.<br/> \n\r";
+    //    $success = false;
+    //}
     //check to see if passwords match
-    if ($password != $password_confirm) {
-        $error .= "Passwords do not match.<br/> \n\r";
-        $success = false;
-    }
+    //if ($password != $password_confirm) {
+    //    $error .= "Passwords do not match.<br/> \n\r";
+    //    $success = false;
+    //}
 
     if ($success) {
         //prep the data for saving in a new user object
@@ -63,33 +62,31 @@ if (isset($_POST['submit-form'])) {
 
 
 <?php
-//login.php
-//require_once 'includes/global.inc.php';
-
-$error = "";
-$username = "";
-$password = "";
-
-//check to see if they've submitted the login form
-if (isset($_POST['submit-login'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $userTools = new UserTools();
-    if ($userTools->login($username, $password)) {
-        //successful login, redirect them to a page
-        //header("Location: pagina2.php");
-        echo'<script> location.replace("pagina2.php"); </script>';
-        
-    } else {
-        $error = "Incorrect username or password. Please try again.";
-    }
-}
+////login.php
+////require_once 'includes/global.inc.php';
+//
+//$error = "";
+//$username = "";
+//$password = "";
+//
+////check to see if they've submitted the login form
+//if (isset($_POST['submit-login'])) {
+//
+//    $username = $_POST['username'];
+//    $password = $_POST['password'];
+//
+//    $userTools = new UserTools();
+//    if ($userTools->login($username, $password)) {
+//        //successful login, redirect them to a page
+//        //header("Location: pagina2.php");
+//        echo'<script> location.replace("pagina2.php"); </script>';
+//        
+//    } else {
+//        $error = "Incorrect username or password. Please try again.";
+//    }
+//}
+//
 ?>
-
-
-
 
 
 
@@ -115,8 +112,7 @@ if (isset($_POST['submit-login'])) {
         <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="/finalhdm/js/presentational-only.js"></script>
-        
-
+       
     </head>
     <body>
 
@@ -129,29 +125,29 @@ if (isset($_POST['submit-login'])) {
 
                 <!-- Some content to demonstrate viewport scrolling behavior -->
                 <div id="more-content">
-                    <blockquote>
+                    <blockquote style="width: 27%;margin: 2% auto 0px;height: 300px;">
                         <?php echo ($error != "") ? $error : ""; ?>
-                        <form action="pagina1.php" method="post">
+                        <form action="pagina1.php" method="post" style="margin: 2em 2em 0px;">
 
-                            Username: <input type="text" value="<?php echo $username; ?>" name="username" /><br/>
-                            Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-                            Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
-                            E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
-                            <input type="submit" value="Register" name="submit-form" />
+                            <input style="background: transparent none repeat scroll 0% 0%; color: #FFF; width: 94%; padding: 10px; border: 1px solid #FFF; font-size: 1em; font-weight: 100; margin-bottom: 1em;" type="text" value="Nombre<?php echo $username; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre';}"name="username" /><br/>
+                            <!--Password: <input type="password" value="<?php // echo $password;  ?>" name="password" /><br/>-->
+                            <!--Password (confirm): <input type="password" value="<? //php echo $password_confirm;  ?>" name="password-confirm" /><br/>-->
+                            <input style="background: transparent none repeat scroll 0% 0%; color: #FFF; width: 94%; padding: 10px; border: 1px solid #FFF; font-size: 1em; font-weight: 100; margin-bottom: 1em;" type="text" value="email<?php echo $email; ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'email';}"name="email" /><br/>
+                            <input type="submit" value="Register" name="submit-form" style="outline: none; background: none; border: 1px solid#fff; color: #fff; width: 99%; margin: 1em 0 .5em 0; padding: 12px; font-size: 15px; font-weight: 400; cursor: pointer;" />
 
                         </form>
 
-                        <?php if (isset($_SESSION['logged_in'])) : ?>
-                            <?php $user = unserialize($_SESSION['user']); ?>
-                            Hello, <?php echo $user->username; ?>. You are logged in. <a href="logout.php">Logout</a> | <a href="settings.php">Change Email</a>
-                        <?php else : ?>
-                            Si ya sos miembro, inicia sesion aqui: 
-                        <?php endif; ?>
-                        <form action="pagina1.php" method="post">
-                            Username: <input type="text" name="username" value="<?php echo $username; ?>" /><br/>
-                            Password: <input type="password" name="password" value="<?php echo $password; ?>" /><br/>
-                            <input type="submit" value="Login" name="submit-login" />
-                        </form>
+                        <?php // if (isset($_SESSION['logged_in'])) : ?>
+                        <?php // $user = unserialize($_SESSION['user']); ?>
+                            <!--Hello, <?php // echo $user->username;  ?>. You are logged in. <a href="logout.php">Logout</a> | <a href="settings.php">Change Email</a>-->
+                        <?php // else : ?>
+                        <!--                            Si ya sos miembro, inicia sesion aqui: -->
+                        <?php // endif; ?>
+                        <!--                        <form action="pagina1.php" method="post">
+                                                    Username: <input type="text" name="username" value="<?php // echo $username;  ?>" /><br/>
+                                                    Password: <input type="password" name="password" value="<? //php echo $password;  ?>" /><br/>
+                                                    <input type="submit" value="Login" name="submit-login" />
+                                                </form>-->
                     </blockquote>
                 </div>
             </section>
